@@ -109,7 +109,48 @@ export default function PrayerTimes() {
 
         <Card className="w-full mb-8 bg-card shadow-md border-border overflow-hidden">
           <CardContent className="p-6 flex flex-col items-center">
-            <Clock className="mb-4" />
+            <div className="flex flex-col items-center mb-4 w-full">
+              <div className="flex justify-center gap-4 mb-2">
+                <button
+                  onClick={() =>
+                    document.documentElement.style.setProperty(
+                      "--clock-scale",
+                      "0.8",
+                    )
+                  }
+                  className="px-2 py-1 text-xs bg-secondary rounded-md hover:bg-secondary/80"
+                >
+                  Small
+                </button>
+                <button
+                  onClick={() =>
+                    document.documentElement.style.setProperty(
+                      "--clock-scale",
+                      "1",
+                    )
+                  }
+                  className="px-2 py-1 text-xs bg-secondary rounded-md hover:bg-secondary/80"
+                >
+                  Medium
+                </button>
+                <button
+                  onClick={() =>
+                    document.documentElement.style.setProperty(
+                      "--clock-scale",
+                      "1.2",
+                    )
+                  }
+                  className="px-2 py-1 text-xs bg-secondary rounded-md hover:bg-secondary/80"
+                >
+                  Large
+                </button>
+              </div>
+              <Clock
+                className="transform scale-[var(--clock-scale,1)] transition-transform duration-300"
+                size="large"
+                showHijriDate={true}
+              />
+            </div>
 
             {prayerTimes && prayerTimes.nextPrayerTime && (
               <Countdown
