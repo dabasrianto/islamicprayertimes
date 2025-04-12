@@ -92,13 +92,13 @@ export default function PrayerTimes() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8 flex flex-col items-center">
-      <div className="w-full max-w-4xl mx-auto">
-        <div className="flex flex-col items-center mb-8">
-          <h1 className="text-3xl font-bold text-primary mb-2">
+    <div className="min-h-screen bg-background p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col items-center">
+      <div className="w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl mx-auto">
+        <div className="flex flex-col items-center mb-4 sm:mb-6 md:mb-8">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-2">
             Islamic Prayer Times
           </h1>
-          <div className="flex items-center gap-4 mt-2">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mt-2 w-full justify-center">
             <LocationSelector
               location={location}
               onUpdateLocation={updateLocation}
@@ -107,15 +107,15 @@ export default function PrayerTimes() {
           </div>
         </div>
 
-        <Card className="w-full mb-8 bg-card shadow-md border-border overflow-hidden">
-          <CardContent className="p-6 flex flex-col items-center">
-            <div className="flex flex-col items-center mb-4 w-full">
-              <div className="flex justify-center gap-4 mb-2">
+        <Card className="w-full mb-4 sm:mb-6 md:mb-8 bg-card shadow-md border-border overflow-hidden">
+          <CardContent className="p-3 sm:p-4 md:p-6 flex flex-col items-center">
+            <div className="flex flex-col items-center mb-3 sm:mb-4 w-full">
+              <div className="flex justify-center gap-2 sm:gap-4 mb-2">
                 <button
                   onClick={() =>
                     document.documentElement.style.setProperty(
                       "--clock-scale",
-                      "0.8",
+                      "0.6",
                     )
                   }
                   className="px-2 py-1 text-xs bg-secondary rounded-md hover:bg-secondary/80"
@@ -126,7 +126,7 @@ export default function PrayerTimes() {
                   onClick={() =>
                     document.documentElement.style.setProperty(
                       "--clock-scale",
-                      "1",
+                      "0.8",
                     )
                   }
                   className="px-2 py-1 text-xs bg-secondary rounded-md hover:bg-secondary/80"
@@ -137,7 +137,7 @@ export default function PrayerTimes() {
                   onClick={() =>
                     document.documentElement.style.setProperty(
                       "--clock-scale",
-                      "1.2",
+                      "1",
                     )
                   }
                   className="px-2 py-1 text-xs bg-secondary rounded-md hover:bg-secondary/80"
@@ -146,7 +146,7 @@ export default function PrayerTimes() {
                 </button>
               </div>
               <Clock
-                className="transform scale-[var(--clock-scale,1)] transition-transform duration-300"
+                className="transform scale-[var(--clock-scale,0.8)] transition-transform duration-300"
                 size="large"
                 showHijriDate={true}
               />
@@ -156,26 +156,28 @@ export default function PrayerTimes() {
               <Countdown
                 targetTime={prayerTimes.nextPrayerTime}
                 label={`Time remaining until ${prayerTimes.nextPrayer}`}
-                className="mt-2"
+                className="mt-2 text-sm sm:text-base"
               />
             )}
           </CardContent>
         </Card>
 
         {location.error ? (
-          <Card className="w-full p-6 text-center">
+          <Card className="w-full p-3 sm:p-4 md:p-6 text-center">
             <p className="text-destructive mb-2">Location Error</p>
-            <p className="text-muted-foreground">{location.error}</p>
-            <p className="mt-4">
+            <p className="text-muted-foreground text-sm sm:text-base">
+              {location.error}
+            </p>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base">
               Please set your location manually to see prayer times.
             </p>
           </Card>
         ) : location.loading ? (
-          <Card className="w-full p-6 text-center">
-            <p>Loading prayer times...</p>
+          <Card className="w-full p-3 sm:p-4 md:p-6 text-center">
+            <p className="text-sm sm:text-base">Loading prayer times...</p>
           </Card>
         ) : prayerTimes ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
             <PrayerCard prayer={prayerTimes.fajr} />
             <PrayerCard prayer={prayerTimes.sunrise} />
             <PrayerCard prayer={prayerTimes.dhuhr} />
@@ -185,9 +187,9 @@ export default function PrayerTimes() {
           </div>
         ) : null}
 
-        <Separator className="my-8" />
+        <Separator className="my-4 sm:my-6 md:my-8" />
 
-        <footer className="text-center text-sm text-muted-foreground">
+        <footer className="text-center text-xs sm:text-sm text-muted-foreground">
           <p>Islamic Prayer Times Application</p>
           <p className="mt-1">
             Using Adhan.js for accurate prayer time calculations

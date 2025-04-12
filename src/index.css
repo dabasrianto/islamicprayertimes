@@ -3,7 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --clock-scale: 1;
+  --clock-scale: 0.8;
+  --bg-pattern: none;
+  --bg-image: none;
+}
+
+/* Device-specific styles */
+@media (max-width: 640px) {
+  :root {
+    --clock-scale: 0.6;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  :root {
+    --clock-scale: 0.7;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --clock-scale: 0.8;
+  }
+}
+
+@media (min-width: 1025px) {
+  :root {
+    --clock-scale: 1;
+  }
 }
 
 @layer base {
